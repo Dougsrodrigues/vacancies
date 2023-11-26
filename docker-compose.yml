@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: vacancies-mysql
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: docker
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: vacancies
+      MYSQLDATA: /data/mysql
+    volumes:
+      - ./data/mysql:/data/mysql
