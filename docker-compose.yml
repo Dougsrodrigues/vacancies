@@ -1,16 +1,15 @@
 version: '3.8'
 
 services:
-  mysql:
-    container_name: vacancies-mysql
-    image: mysql
+  postgres:
+    container_name: vacancies-pg
+    image: postgres
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: docker
-      MYSQL_ROOT_PASSWORD: docker
-      MYSQL_DATABASE: vacancies
-      MYSQLDATA: /data/mysql
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DATABASE: vacancies
+      PGDATA: /data/postgres
     volumes:
-      - ./data/mysql:/data/mysql
+      - ./data/postgres:/data/postgres
