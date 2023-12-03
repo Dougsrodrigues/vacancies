@@ -1,4 +1,5 @@
 import { Either, left, right } from '@/core/either';
+import { RoleEnum } from '@/domain/user/enterprise/user';
 import { HashGenerator } from '@/infra/cryptography/hash-generator';
 import { Injectable } from '@nestjs/common';
 import { School } from '../../enterprise/school';
@@ -40,6 +41,7 @@ export class RegisterSchoolUseCase {
       name,
       email,
       password: hashedPassword,
+      role: RoleEnum.School
     });
 
     await this.schoolRepository.create(school);
