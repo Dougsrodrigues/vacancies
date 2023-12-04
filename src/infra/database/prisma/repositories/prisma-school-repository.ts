@@ -1,5 +1,5 @@
 import { SchoolRepository } from "@/domain/school/application/repositories/school-repository";
-import { School } from "@/domain/school/enterprise/school";
+import { School } from "@/domain/school/enterprise/entities/school";
 import { Injectable } from "@nestjs/common";
 import { PrismaSchoolMapper } from "../mappers/prisma-school-mapper";
 import { PrismaService } from "../prisma.service";

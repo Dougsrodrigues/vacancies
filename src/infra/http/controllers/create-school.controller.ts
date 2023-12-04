@@ -1,5 +1,5 @@
 import { RegisterSchoolUseCase } from '@/domain/school/application/use-cases/register-school';
-import { RoleEnum } from '@/domain/user/enterprise/user';
+import { RoleEnum } from '@/domain/user/enterprise/entities/user';
 import { Body, Controller, HttpCode, Post, UsePipes } from '@nestjs/common';
 import { z } from 'zod';
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe';

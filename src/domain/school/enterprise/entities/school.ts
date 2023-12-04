@@ -1,5 +1,5 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id';
-import { User, UserProps } from '@/domain/user/enterprise/user';
+import { User, UserProps } from '@/domain/user/enterprise/entities/user';
 export interface SchoolProps extends UserProps {
   cnpj: string;
 }

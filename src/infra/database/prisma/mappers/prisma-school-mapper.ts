@@ -1,6 +1,6 @@
 import { UniqueEntityID } from "@/core/entities/unique-entity-id";
-import { School } from "@/domain/school/enterprise/school";
-import { Role } from "@/domain/user/enterprise/user";
+import { School } from "@/domain/school/enterprise/entities/school";
+import { Role } from "@/domain/user/enterprise/entities/user";
 import { Prisma, School as PrismaQuestion } from "@prisma/client";
 
 export class PrismaSchoolMapper {

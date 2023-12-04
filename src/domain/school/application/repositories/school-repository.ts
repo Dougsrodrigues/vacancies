@@ -1,4 +1,4 @@
-import { School } from '../../enterprise/school';
+import { School } from '../../enterprise/entities/school';
 
 export abstract class SchoolRepository {
   abstract findByCnpj(cnpj: string): Promise<School | null>;
