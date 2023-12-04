@@ -10,6 +10,7 @@ export enum RoleEnum {
 }
 
 export interface UserProps {
+  id?: UniqueEntityID
   name: string;
   email: string;
   password: string;
@@ -33,11 +34,5 @@ export class User<
 
   get role(): string {
     return this.props.role;
-  }
-
-  static create(props: UserProps, id?: UniqueEntityID) {
-    const user = new User(props, id);
-
-    return user;
   }
 }

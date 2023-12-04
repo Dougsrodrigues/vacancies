@@ -12,4 +12,4 @@ services:
       POSTGRES_DATABASE: vacancies
       PGDATA: /data/postgres
     volumes:
-      - ./data/postgres:/data/postgres
+      - ./data/pg:/data/postgres

@@ -1,15 +1,17 @@
 import { Either, left, right } from '@/core/either';
-import { RoleEnum } from '@/domain/user/enterprise/user';
-import { HashGenerator } from '@/infra/cryptography/hash-generator';
+import { Role, RoleEnum } from '@/domain/user/enterprise/user';
 import { Injectable } from '@nestjs/common';
 import { School } from '../../enterprise/school';
 import { SchoolRepository } from '../repositories/school-repository';
 import { SchoolAlreadyExistsError } from './errors/school-already-exists-error';
+import { HashGenerator } from '@/core/cryptography/hash-generator';
 
 interface RegisterSchoolUseCaseRequest {
   name: string;
   email: string;
   password: string;
+  cnpj: string;
+  role: Role
 }
 
 type RegisterSchoolUseCaseResponse = Either<
@@ -28,11 +30,12 @@ export class RegisterSchoolUseCase {
     email,
     name,
     password,
+    cnpj
   }: RegisterSchoolUseCaseRequest): Promise<RegisterSchoolUseCaseResponse> {
-    const schoolWithSameEmail = await this.schoolRepository.findByEmail(email);
+    const schoolWithSameCnpj = await this.schoolRepository.findByCnpj(cnpj);
 
-    if (schoolWithSameEmail) {
-      return left(new SchoolAlreadyExistsError(email));
+    if (schoolWithSameCnpj) {
+      return left(new SchoolAlreadyExistsError(cnpj));
     }
 
     const hashedPassword = await this.hashGenerator.hash(password);
@@ -41,7 +44,8 @@ export class RegisterSchoolUseCase {
       name,
       email,
       password: hashedPassword,
-      role: RoleEnum.School
+      role: RoleEnum.School,
+      cnpj,
     });
 
     await this.schoolRepository.create(school);
