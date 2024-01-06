@@ -12,8 +12,6 @@ import { envSchema } from './env';
     }),
     HttpModule,
     AuthModule
-  ],
-  controllers: [],
-  providers: [],
+  ]
 })
 export class AppModule { }

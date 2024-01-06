@@ -10,6 +10,15 @@ export class PrismaSchoolRepository implements SchoolRepository {
     private prisma: PrismaService
   ) { }
 
+
+  async create(school: School): Promise<void> {
+    const data = PrismaSchoolMapper.toPrisma(school)
+
+    await this.prisma.school.create({
+      data
+    })
+  }
+
   async findByCnpj(cnpj: string): Promise<School> {
     const school = await this.prisma.school.findUnique({
       where: {
@@ -22,11 +31,17 @@ export class PrismaSchoolRepository implements SchoolRepository {
     return PrismaSchoolMapper.toDomain(school)
   }
 
-  async create(school: School): Promise<void> {
-    const data = PrismaSchoolMapper.toPrisma(school)
 
-    await this.prisma.school.create({
-      data
+  async findByEmail(email: string): Promise<School> {
+    const school = await this.prisma.school.findUnique({
+      where: {
+        email
+      }
     })
+
+    if (!school) return null
+
+    return PrismaSchoolMapper.toDomain(school)
   }
+
 }

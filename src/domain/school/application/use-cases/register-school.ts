@@ -1,6 +1,6 @@
 import { HashGenerator } from '@/core/cryptography/hash-generator';
 import { Either, left, right } from '@/core/either';
-import { Role, RoleEnum } from '@/domain/user/enterprise/entities/user';
+import { RoleEnum } from '@/domain/user/enterprise/entities/user';
 import { Injectable } from '@nestjs/common';
 import { School } from '../../enterprise/entities/school';
 import { SchoolRepository } from '../repositories/school-repository';
@@ -11,7 +11,7 @@ interface RegisterSchoolUseCaseRequest {
   email: string;
   password: string;
   cnpj: string;
-  role: Role
+  role: RoleEnum
 }
 
 type RegisterSchoolUseCaseResponse = Either<
